@@ -9,34 +9,28 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+   public static void main(String[] args) {
 
-        ResourceConfig config = new ResourceConfig();
-        config.packages("no/right");
-        ServletHolder servlet = new ServletHolder(new ServletContainer(config));
+      ResourceConfig config = new ResourceConfig();
+      config.packages("no/right");
+      ServletHolder servlet = new ServletHolder(new ServletContainer(config));
 
 
-        Server server = new Server(2222);
-        ServletContextHandler context = new ServletContextHandler(server, "/*");
-        context.addServlet(servlet, "/*");
+      Server server = new Server(2222);
+      ServletContextHandler context = new ServletContextHandler(server, "/*");
+      context.addServlet(servlet, "/*");
 
+      try {
+         server.start();
+         server.join();
+      } catch (Exception e) {
+         // do noting
+      } finally {
+         server.destroy();
+      }
 
-        try {
-            server.start();
-            server.join();
-        } catch (Exception e){
-            // do noting
-        }
-
-        finally {
-            server.destroy();
-        }
-
-        System.out.println( "Hello World!" );
-    }
+      System.out.println("Hello World Again!");
+   }
 }
