@@ -9,7 +9,8 @@ public class Resource {
     @Path("hello")
     @Produces(MediaType.TEXT_PLAIN)
     public String helloWorld() {
-        return "Hello, world!";
+        String tmp = RandTextGen.getRandomMan();
+        return "Hello, " + tmp;
     }
 
     @GET
